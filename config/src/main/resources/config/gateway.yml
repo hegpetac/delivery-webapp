@@ -1,0 +1,34 @@
+server:
+  port: 8080
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8085/eureka/}
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: map
+        uri: lb://map
+        predicates:
+          - Path=/api/map/**
+        filters:
+          - RewritePath=/api/map(?<segment>/?.*), /api$\{segment}
+      - id: chat
+        uri: lb://chat
+        predicates:
+          - Path=/api/chat/**
+        filters:
+          - RewritePath=/api/chat(?<segment>/?.*), /api$\{segment}
+      - id: order
+        uri: lb://order
+        predicates:
+          - Path=/api/order/**
+        filters:
+          - RewritePath=/api/order(?<segment>/?.*), /api$\{segment}
+      - id: user
+        uri: lb://user
+        predicates:
+          - Path=/api/user/**
+        filters:
+          - RewritePath=/api/user(?<segment>/?.*), /api$\{segment}

@@ -1,0 +1,150 @@
+version: '3'
+
+services:
+  config:
+    image: delivery-webapp/config
+    environment:
+      - JAVA_OPTS=
+        -DEUREKA_SERVER=http://discovery:8085/eureka
+    ports:
+      - "127.0.0.1:8081:8081"
+    networks:
+      - local
+    container_name: config
+
+  discovery:
+    image: delivery-webapp/discovery
+    environment:
+      - JAVA_OPTS=
+        -DCONFIG_SERVER=http://config:8081
+    depends_on:
+      config:
+        condition: service_started
+    links:
+      - config
+    ports:
+      - "127.0.0.1:8085:8085"
+    networks:
+      - local
+    container_name: discovery
+
+  gateway:
+    image: delivery-webapp/gateway
+    environment:
+      - JAVA_OPTS=
+        -DEUREKA_SERVER=http://discovery:8085/eureka
+        -DCONFIG_SERVER=http://config:8081
+    depends_on:
+      discovery:
+        condition: service_started
+      config:
+        condition: service_started
+    links:
+      - discovery
+      - config
+    ports:
+      - "127.0.0.1:8080:8080"
+    networks:
+      - local
+    container_name: gateway
+
+  user:
+    image: delivery-webapp/user
+    ports:
+      - "127.0.0.1:8082:8082"
+    environment:
+      - JAVA_OPTS=
+        -DEUREKA_SERVER=http://discovery:8085/eureka
+        -DCONFIG_SERVER=http://config:8081
+    depends_on:
+      discovery:
+        condition: service_started
+      config:
+        condition: service_started
+      gateway:
+        condition: service_started
+    links:
+      - discovery
+      - config
+      - gateway
+    networks:
+      - local
+    container_name: user
+
+  map:
+    image: delivery-webapp/map
+    ports:
+      - "127.0.0.1:8083:8083"
+    environment:
+      - JAVA_OPTS=
+        -DCONFIG_SERVER=http://config:8081
+        -DEUREKA_SERVER=http://discovery:8085/eureka
+    depends_on:
+      discovery:
+        condition: service_started
+      config:
+        condition: service_started
+      gateway:
+        condition: service_started
+    links:
+      - discovery
+      - config
+      - gateway
+    networks:
+      - local
+    container_name: map
+
+  order:
+    image: delivery-webapp/map
+    ports:
+      - "127.0.0.1:8086:8086"
+    environment:
+      - JAVA_OPTS=
+        -DCONFIG_SERVER=http://config:8081
+        -DEUREKA_SERVER=http://discovery:8085/eureka
+    depends_on:
+      discovery:
+        condition: service_started
+      config:
+        condition: service_started
+      gateway:
+        condition: service_started
+    links:
+      - discovery
+      - config
+      - gateway
+    networks:
+      - local
+    container_name: order
+
+  chat:
+    image: delivery-webapp/chat
+    ports:
+      - "127.0.0.1:8083:8087"
+    environment:
+      - JAVA_OPTS=
+        -DCONFIG_SERVER=http://config:8081
+        -DEUREKA_SERVER=http://discovery:8085/eureka
+    depends_on:
+      discovery:
+        condition: service_started
+      config:
+        condition: service_started
+      gateway:
+        condition: service_started
+    links:
+      - discovery
+      - config
+      - gateway
+    networks:
+      - local
+    container_name: chat
+
+  frontend:
+    image: delivery-webapp/frontend
+    ports:
+      - "127.0.0.1:4200:80"
+    container_name: frontend
+
+
+
