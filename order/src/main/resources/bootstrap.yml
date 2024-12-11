@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: order
+  cloud:
+    config:
+      name: order
+      uri: ${CONFIG_SERVER:http://config:8081}

@@ -1,0 +1,140 @@
+openapi: '3.0.3'
+info:
+  title: order
+  description: order
+  version: '1.0.0'
+servers:
+  - url: 'http://localhost:8086'
+paths:
+  /api/order/{orderId}:
+    get:
+      operationId: getOrderById
+      description: 'get order by id'
+      parameters:
+        - in: path
+          name: orderId
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: './model/order.yaml'
+  /api/order/order-item/{orderItemId}:
+    get:
+      operationId: getOrderItemById
+      description: 'get order item by id'
+      parameters:
+        - in: path
+          name: orderItemId
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: './model/order-item.yaml'
+  /api/order/good/{goodId}:
+    get:
+      operationId: getGoodById
+      description: 'get good by id'
+      parameters:
+        - in: path
+          name: goodId
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: './model/good.yaml'
+  /api/order/customer/{userId}:
+    get:
+      operationId: getOrdersByCustomer
+      description: 'get orders ordered by a customer'
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './model/order.yaml'
+  /api/order/driver/{userId}:
+    get:
+      operationId: getOrdersByDriver
+      description: 'get orders delivered by a driver'
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './model/order.yaml'
+  /api/order/handler/{userId}:
+    get:
+      operationId: getOrdersByHandler
+      description: 'get orders handled by a handler'
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './model/order.yaml'
+  /api/order/handler:
+    put:
+      operationId: updateDeliveryTime
+      description: 'updates the expected delivery time of the order'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './req/modify-delivery-date-req.yaml'
+      responses:
+        '200':
+          description: 'Success'
+  /api/order/driver:
+    put:
+      operationId: updateDeliveryState
+      description: 'updates the delivery state of the order'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './req/modify-delivery-state-req.yaml'
+      responses:
+        '200':
+          description: 'Success'

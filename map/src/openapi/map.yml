@@ -1,0 +1,19 @@
+openapi: '3.0.3'
+info:
+  title: map
+  description: map
+  version: '1.0.0'
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /map:
+    get:
+      operationId: getMaps
+      description: 'get all maps'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                type: boolean

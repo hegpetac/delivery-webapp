@@ -4,4 +4,4 @@ spring:
   cloud:
     config:
       name: discovery
-      uri: ${CONFIG_SERVER:http://localhost:8081}
+      uri: ${CONFIG_SERVER:http://config:8081}

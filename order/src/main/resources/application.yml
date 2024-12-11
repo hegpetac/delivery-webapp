@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: order
+server:
+  port: 8086
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://discovery:8085/eureka/}
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+#spring:
+#  jpa:
+#    database: POSTGRESQL
+#    show-sql: true
+#    generate-ddl: true
+#    hibernate:
+#      ddl-auto: update
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    platform: postgres
+#    url: jdbc:postgresql://localhost:5432/delivery-webapp-order?createDatabaseIfNotExist=true
+#    username: postgres
+#    password: admin
+
+
+feign:
+  chat:
+    url: ${CHAT_FEIGN_URL:http://chat:8087/api}
+  map:
+    url: ${MAP_FEIGN_URL:http://map:8083/api}
+  user:
+    url: ${USER_FEIGN_URL:http://user:8082/api}

@@ -1,0 +1,24 @@
+type: object
+properties:
+  id:
+    type: integer
+  userId:
+    type: integer
+  handlerId:
+    type: integer
+  driverId:
+    type: integer
+  orderPlacementDate:
+    type: string
+    format: date
+  expectedDeliveryTime:
+    type: string
+    format: date
+  price:
+    type: number
+  items:
+    type: array
+    items:
+      $ref: './order-item.yaml'
+  deliveryState:
+    $ref: '../enum/delivery-state.yaml'

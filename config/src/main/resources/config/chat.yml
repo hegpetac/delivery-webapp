@@ -1,0 +1,29 @@
+server:
+  port: 8087
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://discovery:8085/eureka/}
+spring:
+  application:
+    name: chat
+#spring:
+#  jpa:
+#    database: POSTGRESQL
+#    show-sql: true
+#    generate-ddl: true
+#    hibernate:
+#      ddl-auto: update
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    platform: postgres
+#    url: jdbc:postgresql://localhost:5432/delivery-webapp-chat?createDatabaseIfNotExist=true
+#    username: postgres
+#    password: admin
+feign:
+  user:
+    url: ${USER_FEIGN_URL:http://user:8082/api}
+  map:
+    url: ${MAP_FEIGN_URL:http://map:8083/api}
+  order:
+    url: ${ORDER_FEIGN_URL:http://order:8086/api}

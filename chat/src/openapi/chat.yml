@@ -1,0 +1,19 @@
+openapi: '3.0.3'
+info:
+  title: chat
+  description: chat
+  version: '1.0.0'
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /chat:
+    get:
+      operationId: getChats
+      description: 'get all chats'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                type: boolean

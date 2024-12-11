@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: map
+  cloud:
+    config:
+      name: map
+      uri: ${CONFIG_SERVER:http://config:8081}

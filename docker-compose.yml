@@ -7,7 +7,7 @@ services:
       - JAVA_OPTS=
         -DEUREKA_SERVER=http://discovery:8085/eureka
     ports:
-      - "127.0.0.1:8081:8081"
+      - "8081:8081"
     networks:
       - local
     container_name: config
@@ -23,7 +23,7 @@ services:
     links:
       - config
     ports:
-      - "127.0.0.1:8085:8085"
+      - "8085:8085"
     networks:
       - local
     container_name: discovery
@@ -43,7 +43,7 @@ services:
       - discovery
       - config
     ports:
-      - "127.0.0.1:8080:8080"
+      - "8080:8080"
     networks:
       - local
     container_name: gateway
@@ -51,7 +51,7 @@ services:
   user:
     image: delivery-webapp/user
     ports:
-      - "127.0.0.1:8082:8082"
+      - "8082:8082"
     environment:
       - JAVA_OPTS=
         -DEUREKA_SERVER=http://discovery:8085/eureka
@@ -74,11 +74,11 @@ services:
   map:
     image: delivery-webapp/map
     ports:
-      - "127.0.0.1:8083:8083"
+      - "8083:8083"
     environment:
       - JAVA_OPTS=
-        -DCONFIG_SERVER=http://config:8081
-        -DEUREKA_SERVER=http://discovery:8085/eureka
+        -CONFIG_SERVER=http://config:8081
+        -EUREKA_SERVER=http://discovery:8085/eureka
     depends_on:
       discovery:
         condition: service_started
@@ -95,13 +95,13 @@ services:
     container_name: map
 
   order:
-    image: delivery-webapp/map
+    image: delivery-webapp/order
     ports:
-      - "127.0.0.1:8086:8086"
+      - "8086:8086"
     environment:
       - JAVA_OPTS=
-        -DCONFIG_SERVER=http://config:8081
-        -DEUREKA_SERVER=http://discovery:8085/eureka
+        -CONFIG_SERVER=http://config:8081
+        -EUREKA_SERVER=http://discovery:8085/eureka
     depends_on:
       discovery:
         condition: service_started
@@ -120,7 +120,7 @@ services:
   chat:
     image: delivery-webapp/chat
     ports:
-      - "127.0.0.1:8083:8087"
+      - "8087:8087"
     environment:
       - JAVA_OPTS=
         -DCONFIG_SERVER=http://config:8081
@@ -143,8 +143,10 @@ services:
   frontend:
     image: delivery-webapp/frontend
     ports:
-      - "127.0.0.1:4200:80"
+      - "4200:80"
     container_name: frontend
 
 
-
+networks:
+  local:
+    driver: bridge

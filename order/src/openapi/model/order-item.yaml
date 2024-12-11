@@ -1,0 +1,10 @@
+type: object
+properties:
+  id:
+    type: integer
+  quantity:
+    type: integer
+  price:
+    type: number
+  good:
+    $ref: './good.yaml'

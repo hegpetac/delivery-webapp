@@ -1,0 +1,6 @@
+type: object
+properties:
+  orderId:
+    type: integer
+  deliveryState:
+    $ref: '../enum/delivery-state.yaml'

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: chat
+  cloud:
+    config:
+      name: chat
+      uri: ${CONFIG_SERVER:http://config:8081}

@@ -3,7 +3,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_SERVER:http://localhost:8085/eureka/}
+      defaultZone: ${EUREKA_SERVER:http://discovery:8085/eureka/}
 spring:
   cloud:
     gateway:
@@ -24,11 +24,12 @@ spring:
         uri: lb://order
         predicates:
           - Path=/api/order/**
-        filters:
-          - RewritePath=/api/order(?<segment>/?.*), /api$\{segment}
       - id: user
         uri: lb://user
         predicates:
           - Path=/api/user/**
         filters:
           - RewritePath=/api/user(?<segment>/?.*), /api$\{segment}
+#deliveryWebapp:
+#  jwtSecret:
+#  jwtExpirationMs:

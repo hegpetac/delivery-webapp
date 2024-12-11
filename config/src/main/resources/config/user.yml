@@ -1,0 +1,35 @@
+server:
+  port: 8082
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://discovery:8085/eureka/}
+    fetchRegistry: true
+    register-with-eureka: true
+#deliveryWebapp:
+#  jwtSecret:
+#  jwtExpirationMs:
+frontend.baseUrl: ${FRONTEND_BASEURL:http://frontend:4200}
+spring:
+  application:
+    name: user
+#spring:
+#  jpa:
+#    database: POSTGRESQL
+#    show-sql: true
+#    generate-ddl: true
+#    hibernate:
+#      ddl-auto: update
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    platform: postgres
+#    url: jdbc:postgresql://localhost:5432/delivery-webapp-user?createDatabaseIfNotExist=true
+#    username: postgres
+#    password: admin
+feign:
+  chat:
+    url: ${CHAT_FEIGN_URL:http://chat:8087/api}
+  map:
+    url: ${MAP_FEIGN_URL:http://map:8083/api}
+  order:
+    url: ${ORDER_FEIGN_URL:http://order:8086/api}

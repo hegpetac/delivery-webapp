@@ -1,0 +1,6 @@
+type: string
+enum:
+  - ACCEPTED
+  - PROCESSED
+  - EN_ROUTE
+  - COMPLETED

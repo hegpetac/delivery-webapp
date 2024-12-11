@@ -1,0 +1,32 @@
+server:
+  port: 8086
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://discovery:8085/eureka/}
+spring:
+  application:
+    name: order
+#  jpa:
+#    show-sql: true
+#    generate-ddl: true
+#    hibernate:
+#      ddl-auto: update
+#      format_sql: true
+#    open-in-view: false
+#  sql:
+#    init:
+#      mode: always
+#  datasource:
+#    url: jdbc:postgresql://host.docker.internal:5432/delivery-webapp-order?createDatabaseIfNotExist=true
+#    driver-class-name: org.postgresql.Driver
+#    username: postgres
+#    password: admin
+
+feign:
+  chat:
+    url: ${CHAT_FEIGN_URL:http://chat:8087/api}
+  map:
+    url: ${MAP_FEIGN_URL:http://map:8083/api}
+  user:
+    url: ${USER_FEIGN_URL:http://user:8082/api}

@@ -1,0 +1,19 @@
+openapi: '3.0.3'
+info:
+  title: user
+  description: user
+  version: '1.0.0'
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /user:
+    get:
+      operationId: getUsers
+      description: 'get all users'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                type: boolean
