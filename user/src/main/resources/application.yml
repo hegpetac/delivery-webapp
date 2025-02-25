@@ -6,9 +6,9 @@ eureka:
       defaultZone: ${EUREKA_SERVER:http://discovery:8085/eureka/}
     fetchRegistry: true
     register-with-eureka: true
-#deliveryWebapp:
-#  jwtSecret:
-#  jwtExpirationMs:
+deliveryWebapp:
+  jwtSecret: HwTaEBBb6AFEyteEasdBnXjaerVWdeTRnNOkLM4N
+  jwtExpirationMs: 8640000
 frontend.baseUrl: ${FRONTEND_BASEURL:http://frontend:4200}
 #spring:
 #  jpa:

@@ -1,0 +1,8 @@
+type: object
+properties:
+  user:
+    $ref: '../model/user.yaml'
+  role:
+    $ref: '../model/role.yaml'
+  jwt:
+    type: string

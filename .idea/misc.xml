@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -18,4 +19,13 @@
     </option>
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="corretto-21" project-jdk-type="JavaSDK" />
+  <component name="SwUserDefinedSpecifications">
+    <option name="specTypeByUrl">
+      <map>
+        <entry key="file://$PROJECT_DIR$/order/src/openapi/model/good.yaml" value="openapi30" />
+        <entry key="file://$PROJECT_DIR$/order/src/openapi/model/order-item.yaml" value="openapi30" />
+        <entry key="file://$PROJECT_DIR$/order/src/openapi/model/order.yaml" value="openapi30" />
+      </map>
+    </option>
+  </component>
 </project>

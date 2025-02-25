@@ -176,7 +176,6 @@
 								<useTags>true</useTags>
 								<serializableModels>true</serializableModels>
 								<skipDefaultInterface>true</skipDefaultInterface>
-<!--								<oas3>true</oas3>-->
 								<useSpringController>true</useSpringController>
 								<useSpringBoot3>true</useSpringBoot3>
 								<useSpringfox>false</useSpringfox>

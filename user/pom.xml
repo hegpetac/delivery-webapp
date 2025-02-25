@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>21</java.version>
 		<spring-cloud.version>2023.0.1</spring-cloud.version>
+		<package.infrastructure>com.backend.userapi</package.infrastructure>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -24,11 +25,15 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -37,10 +42,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bootstrap</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -78,7 +79,7 @@
 		<dependency>
 			<groupId>org.openapitools</groupId>
 			<artifactId>openapi-generator</artifactId>
-			<version>6.2.0</version>
+			<version>7.10.0</version>
 		</dependency>
 
 		<dependency>
@@ -91,7 +92,23 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.12.6</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.12.6</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.12.6</version>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>com.backend</groupId>
 			<artifactId>user-api</artifactId>
@@ -99,11 +116,11 @@
 			<scope>compile</scope>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>com.backend</groupId>-->
-<!--			<artifactId>order-api</artifactId>-->
-<!--			<version>0.0.1-SNAPSHOT</version>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>com.backend</groupId>
+			<artifactId>order-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.backend</groupId>
@@ -147,9 +164,10 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>6.0.0</version>
+				<version>7.10.0</version>
 				<executions>
 					<execution>
+						<id>generate-user-api-ts-model</id>
 						<goals>
 							<goal>generate</goal>
 						</goals>
@@ -157,6 +175,36 @@
 							<inputSpec>${project.basedir}/src/openapi/user.yml</inputSpec>
 							<generatorName>typescript-angular</generatorName>
 							<output>${project.basedir}/../delivery-webapp-client/src/openapi/user</output>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-order-api-java-model</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<generatorName>spring</generatorName>
+							<inputSpec>${project.basedir}/src/openapi/user.yml</inputSpec>
+							<output>${project.basedir}/../user-api</output>
+							<apiPackage>${package.infrastructure}.api</apiPackage>
+							<modelPackage>${package.infrastructure}.model</modelPackage>
+							<generateModels>true</generateModels>
+							<generateSupportingFiles>false</generateSupportingFiles>
+							<generateModelTests>false</generateModelTests>
+							<generateApiTests>false</generateApiTests>
+							<generateModelDocumentation>false</generateModelDocumentation>
+							<generateApiDocumentation>false</generateApiDocumentation>
+							<generateApis>true</generateApis>
+							<configOptions>
+								<library>spring-cloud</library>
+								<interfaceOnly>true</interfaceOnly>
+								<useTags>true</useTags>
+								<serializableModels>true</serializableModels>
+								<skipDefaultInterface>true</skipDefaultInterface>
+								<useSpringController>true</useSpringController>
+								<useSpringBoot3>true</useSpringBoot3>
+								<useSpringfox>false</useSpringfox>
+							</configOptions>
 						</configuration>
 					</execution>
 				</executions>

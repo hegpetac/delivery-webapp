@@ -4,16 +4,27 @@ info:
   description: user
   version: '1.0.0'
 servers:
-  - url: 'http://localhost:8080'
+  - url: 'http://localhost:8082'
 paths:
-  /user:
-    get:
-      operationId: getUsers
-      description: 'get all users'
+  /api/login:
+    post:
+      operationId: login
+      description: 'Login the user'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './req/login-req.yaml'
       responses:
         '200':
           description: 'Success'
           content:
             application/json:
               schema:
-                type: boolean
+                $ref: './resp/login-resp.yaml'
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: './error/unauthorized.yaml'

@@ -30,6 +30,6 @@ spring:
           - Path=/api/user/**
         filters:
           - RewritePath=/api/user(?<segment>/?.*), /api$\{segment}
-#deliveryWebapp:
-#  jwtSecret:
-#  jwtExpirationMs:
+deliveryWebapp:
+  jwtSecret: HwTaEBBb6AFEyteEasdBnXjaerVWdeTRnNOkLM4N
+  jwtExpirationMs: 8640000
