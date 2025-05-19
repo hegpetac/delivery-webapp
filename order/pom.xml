@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.4</version>
+		<version>3.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.backend</groupId>
@@ -16,7 +16,6 @@
 	<properties>
 		<java.version>21</java.version>
 		<spring-cloud.version>2023.0.1</spring-cloud.version>
-		<package.infrastructure>com.backend.orderapi</package.infrastructure>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -61,18 +60,18 @@
 			<version>1.4.2.Final</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.openapitools</groupId>
-			<artifactId>jackson-databind-nullable</artifactId>
-			<version>0.2.3</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.openapitools</groupId>-->
+<!--			<artifactId>jackson-databind-nullable</artifactId>-->
+<!--			<version>0.2.3</version>-->
+<!--		</dependency>-->
 
-		<dependency>
-			<groupId>org.openapitools</groupId>
-			<artifactId>openapi-generator</artifactId>
-			<version>7.10.0</version>
-			<scope>provided</scope>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.openapitools</groupId>-->
+<!--			<artifactId>openapi-generator</artifactId>-->
+<!--			<version>7.10.0</version>-->
+<!--			<scope>provided</scope>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -92,11 +91,11 @@
 			<scope>compile</scope>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>com.backend</groupId>-->
-<!--			<artifactId>order-api</artifactId>-->
-<!--			<version>0.0.1-SNAPSHOT</version>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>com.backend</groupId>
+			<artifactId>order-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.backend</groupId>
@@ -136,54 +135,54 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.openapitools</groupId>
-				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>7.10.0</version>
-				<executions>
-					<execution>
-						<id>generate-order-api-ts-model</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<inputSpec>${project.basedir}/src/openapi/order.yml</inputSpec>
-							<generatorName>typescript-angular</generatorName>
-							<output>${project.basedir}/../delivery-webapp-client/src/openapi/order</output>
-						</configuration>
-					</execution>
-					<execution>
-						<id>generate-order-api-java-model</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<generatorName>spring</generatorName>
-							<inputSpec>${project.basedir}/src/openapi/order.yml</inputSpec>
-							<output>${project.basedir}/../order-api</output>
-							<apiPackage>${package.infrastructure}.api</apiPackage>
-							<modelPackage>${package.infrastructure}.model</modelPackage>
-							<generateModels>true</generateModels>
-							<generateSupportingFiles>false</generateSupportingFiles>
-							<generateModelTests>false</generateModelTests>
-							<generateApiTests>false</generateApiTests>
-							<generateModelDocumentation>false</generateModelDocumentation>
-							<generateApiDocumentation>false</generateApiDocumentation>
-							<generateApis>true</generateApis>
-							<configOptions>
-								<library>spring-cloud</library>
-								<interfaceOnly>true</interfaceOnly>
-								<useTags>true</useTags>
-								<serializableModels>true</serializableModels>
-								<skipDefaultInterface>true</skipDefaultInterface>
-								<useSpringController>true</useSpringController>
-								<useSpringBoot3>true</useSpringBoot3>
-								<useSpringfox>false</useSpringfox>
-							</configOptions>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.openapitools</groupId>-->
+<!--				<artifactId>openapi-generator-maven-plugin</artifactId>-->
+<!--				<version>7.10.0</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>generate-order-api-ts-model</id>-->
+<!--						<goals>-->
+<!--							<goal>generate</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<inputSpec>${project.basedir}/src/openapi/order.yml</inputSpec>-->
+<!--							<generatorName>typescript-angular</generatorName>-->
+<!--							<output>${project.basedir}/../delivery-webapp-client/src/openapi/order</output>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--					<execution>-->
+<!--						<id>generate-order-api-java-model</id>-->
+<!--						<goals>-->
+<!--							<goal>generate</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<generatorName>spring</generatorName>-->
+<!--							<inputSpec>${project.basedir}/src/openapi/order.yml</inputSpec>-->
+<!--							<output>${project.basedir}/../order-api</output>-->
+<!--							<apiPackage>${package.infrastructure}.api</apiPackage>-->
+<!--							<modelPackage>${package.infrastructure}.model</modelPackage>-->
+<!--							<generateModels>true</generateModels>-->
+<!--							<generateSupportingFiles>false</generateSupportingFiles>-->
+<!--							<generateModelTests>false</generateModelTests>-->
+<!--							<generateApiTests>false</generateApiTests>-->
+<!--							<generateModelDocumentation>false</generateModelDocumentation>-->
+<!--							<generateApiDocumentation>false</generateApiDocumentation>-->
+<!--							<generateApis>true</generateApis>-->
+<!--							<configOptions>-->
+<!--								<library>spring-cloud</library>-->
+<!--								<interfaceOnly>true</interfaceOnly>-->
+<!--								<useTags>true</useTags>-->
+<!--								<serializableModels>true</serializableModels>-->
+<!--								<skipDefaultInterface>true</skipDefaultInterface>-->
+<!--								<useSpringController>true</useSpringController>-->
+<!--								<useSpringBoot3>true</useSpringBoot3>-->
+<!--								<useSpringfox>false</useSpringfox>-->
+<!--							</configOptions>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

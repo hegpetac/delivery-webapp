@@ -1,3 +1,3 @@
-./mvn-build.sh
-./docker-build.sh
+sh mvn-build.sh
+sh docker-build.sh
 docker-compose up -d

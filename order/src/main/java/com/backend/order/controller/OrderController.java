@@ -1,6 +1,6 @@
 package com.backend.order.controller;
 
-import com.backend.orderapi.OrderApi;
+import com.backend.orderapi.api.OrderApi;
 import com.backend.orderapi.model.*;
 import com.backend.order.service.OrderService;
 import lombok.RequiredArgsConstructor;

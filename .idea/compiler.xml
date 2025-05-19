@@ -9,8 +9,10 @@
         <module name="user-api" />
         <module name="map-api" />
         <module name="discovery" />
+        <module name="chat" />
         <module name="order-api" />
         <module name="config" />
+        <module name="map" />
         <module name="chat-api" />
         <module name="gateway" />
       </profile>
@@ -38,24 +40,22 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
         </processorPath>
         <module name="user" />
-        <module name="map" />
-        <module name="chat" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="chat" options="-parameters" />
-      <module name="chat-api" options="-parameters" />
-      <module name="config" options="-parameters" />
-      <module name="discovery" options="-parameters" />
-      <module name="gateway" options="-parameters" />
-      <module name="map" options="-parameters" />
-      <module name="map-api" options="-parameters" />
+      <module name="chat" options="" />
+      <module name="chat-api" options="" />
+      <module name="config" options="" />
+      <module name="discovery" options="" />
+      <module name="gateway" options="" />
+      <module name="map" options="" />
+      <module name="map-api" options="" />
       <module name="order" options="-parameters -Amapstruct.defaultComponentModel=spring" />
       <module name="order-api" options="-parameters" />
       <module name="user" options="-parameters" />
-      <module name="user-api" options="-parameters" />
+      <module name="user-api" options="" />
     </option>
   </component>
 </project>

@@ -8,6 +8,8 @@ servers:
 paths:
   /api/order/{orderId}:
     get:
+      tags:
+        - Order
       operationId: getOrderById
       description: 'get order by id'
       parameters:
@@ -25,6 +27,8 @@ paths:
                 $ref: './model/order.yaml'
   /api/order/order-item/{orderItemId}:
     get:
+      tags:
+        - Order
       operationId: getOrderItemById
       description: 'get order item by id'
       parameters:
@@ -42,6 +46,8 @@ paths:
                 $ref: './model/order-item.yaml'
   /api/order/good/{goodId}:
     get:
+      tags:
+        - Order
       operationId: getGoodById
       description: 'get good by id'
       parameters:
@@ -59,6 +65,8 @@ paths:
                 $ref: './model/good.yaml'
   /api/order/customer/{userId}:
     get:
+      tags:
+        - Order
       operationId: getOrdersByCustomer
       description: 'get orders ordered by a customer'
       parameters:
@@ -78,6 +86,8 @@ paths:
                   $ref: './model/order.yaml'
   /api/order/driver/{userId}:
     get:
+      tags:
+        - Order
       operationId: getOrdersByDriver
       description: 'get orders delivered by a driver'
       parameters:
@@ -97,6 +107,8 @@ paths:
                   $ref: './model/order.yaml'
   /api/order/handler/{userId}:
     get:
+      tags:
+        - Order
       operationId: getOrdersByHandler
       description: 'get orders handled by a handler'
       parameters:
@@ -116,6 +128,8 @@ paths:
                   $ref: './model/order.yaml'
   /api/order/handler:
     put:
+      tags:
+        - Order
       operationId: updateDeliveryTime
       description: 'updates the expected delivery time of the order'
       requestBody:
@@ -128,6 +142,8 @@ paths:
           description: 'Success'
   /api/order/driver:
     put:
+      tags:
+        - Order
       operationId: updateDeliveryState
       description: 'updates the delivery state of the order'
       requestBody:
