@@ -230,6 +230,22 @@ services:
       - "4200:80"
     container_name: frontend
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: a@a.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    depends_on:
+      - order-db
+      - chat-db
+      - user-db
+      - map-db
+    networks:
+      - local
+
 volumes:
   user-data:
   order-data:
