@@ -5,8 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>3.4.1</version>
 	</parent>
 	<groupId>com.backend</groupId>
 	<artifactId>user-api</artifactId>
@@ -16,6 +15,7 @@
 	<properties>
 		<java.version>21</java.version>
 		<spring-cloud.version>2023.0.1</spring-cloud.version>
+		<package.infrastructure>com.backend.userapi</package.infrastructure>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -57,4 +57,46 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>7.10.0</version>
+				<executions>
+					<!--                    <execution>-->
+					<!--                        <id>generate-user-api-ts-model</id>-->
+					<!--                        <goals>-->
+					<!--                            <goal>generate</goal>-->
+					<!--                        </goals>-->
+					<!--                        <configuration>-->
+					<!--                            <inputSpec>${project.basedir}/src/openapi/user.yml</inputSpec>-->
+					<!--                            <generatorName>typescript-angular</generatorName>-->
+					<!--                            <output>${project.basedir}/../delivery-webapp-client/src/openapi/user</output>-->
+					<!--                        </configuration>-->
+					<!--                    </execution>-->
+					<execution>
+						<id>generate-user-api-java-model</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<generatorName>spring</generatorName>
+							<inputSpec>${project.basedir}/src/openapi/user.yml</inputSpec>
+							<output>${project.basedir}/target</output>
+							<apiPackage>${package.infrastructure}.api</apiPackage>
+							<modelPackage>${package.infrastructure}.model</modelPackage>
+							<configOptions>
+								<library>spring-cloud</library>
+								<useTags>true</useTags>
+								<useSpringController>true</useSpringController>
+								<useSpringBoot3>true</useSpringBoot3>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

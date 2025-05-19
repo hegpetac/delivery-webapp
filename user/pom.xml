@@ -5,8 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>3.4.1</version>
 	</parent>
 	<groupId>com.backend</groupId>
 	<artifactId>user</artifactId>
@@ -68,18 +67,6 @@
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>1.4.2.Final</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openapitools</groupId>
-			<artifactId>jackson-databind-nullable</artifactId>
-			<version>0.2.3</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openapitools</groupId>
-			<artifactId>openapi-generator</artifactId>
-			<version>7.10.0</version>
 		</dependency>
 
 		<dependency>
@@ -160,56 +147,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.openapitools</groupId>
-				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>7.10.0</version>
-				<executions>
-					<execution>
-						<id>generate-user-api-ts-model</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<inputSpec>${project.basedir}/src/openapi/user.yml</inputSpec>
-							<generatorName>typescript-angular</generatorName>
-							<output>${project.basedir}/../delivery-webapp-client/src/openapi/user</output>
-						</configuration>
-					</execution>
-					<execution>
-						<id>generate-order-api-java-model</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<generatorName>spring</generatorName>
-							<inputSpec>${project.basedir}/src/openapi/user.yml</inputSpec>
-							<output>${project.basedir}/../user-api</output>
-							<apiPackage>${package.infrastructure}.api</apiPackage>
-							<modelPackage>${package.infrastructure}.model</modelPackage>
-							<generateModels>true</generateModels>
-							<generateSupportingFiles>false</generateSupportingFiles>
-							<generateModelTests>false</generateModelTests>
-							<generateApiTests>false</generateApiTests>
-							<generateModelDocumentation>false</generateModelDocumentation>
-							<generateApiDocumentation>false</generateApiDocumentation>
-							<generateApis>true</generateApis>
-							<configOptions>
-								<library>spring-cloud</library>
-								<interfaceOnly>true</interfaceOnly>
-								<useTags>true</useTags>
-								<serializableModels>true</serializableModels>
-								<skipDefaultInterface>true</skipDefaultInterface>
-								<useSpringController>true</useSpringController>
-								<useSpringBoot3>true</useSpringBoot3>
-								<useSpringfox>false</useSpringfox>
-							</configOptions>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

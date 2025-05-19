@@ -8,6 +8,8 @@ servers:
 paths:
   /api/login:
     post:
+      tags:
+        - User
       operationId: login
       description: 'Login the user'
       requestBody:
