@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   config:
@@ -31,7 +31,7 @@ services:
   gateway:
     image: delivery-webapp/gateway
     environment:
-      - JAVA_OPTS=
+      JAVA_OPTS: >
         -DEUREKA_SERVER=http://discovery:8085/eureka
         -DCONFIG_SERVER=http://config:8081
     depends_on:
@@ -48,12 +48,31 @@ services:
       - local
     container_name: gateway
 
+  user-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: user-db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - user-data:/var/lib/postgresql/data
+    networks:
+      - local
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "admin" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   user:
     image: delivery-webapp/user
     ports:
       - "8082:8082"
     environment:
-      - JAVA_OPTS=
+      SPRING_DATASOURCE_URL: jdbc:postgresql://user-db:5432/user-db
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+      JAVA_OPTS: >
         -DEUREKA_SERVER=http://discovery:8085/eureka
         -DCONFIG_SERVER=http://config:8081
     depends_on:
@@ -63,6 +82,8 @@ services:
         condition: service_started
       gateway:
         condition: service_started
+      user-db:
+        condition: service_healthy
     links:
       - discovery
       - config
@@ -71,12 +92,31 @@ services:
       - local
     container_name: user
 
+  map-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: map-db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - map-data:/var/lib/postgresql/data
+    networks:
+      - local
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "admin" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   map:
     image: delivery-webapp/map
     ports:
       - "8083:8083"
     environment:
-      - JAVA_OPTS=
+      SPRING_DATASOURCE_URL: jdbc:postgresql://map-db:5432/map-db
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+      JAVA_OPTS: >
         -CONFIG_SERVER=http://config:8081
         -EUREKA_SERVER=http://discovery:8085/eureka
     depends_on:
@@ -86,6 +126,8 @@ services:
         condition: service_started
       gateway:
         condition: service_started
+      map-db:
+        condition: service_healthy
     links:
       - discovery
       - config
@@ -94,35 +136,31 @@ services:
       - local
     container_name: map
 
+  order-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: order-db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - order-data:/var/lib/postgresql/data
+    networks:
+      - local
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "admin" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   order:
     image: delivery-webapp/order
     ports:
       - "8086:8086"
     environment:
-      - JAVA_OPTS=
-        -CONFIG_SERVER=http://config:8081
-        -EUREKA_SERVER=http://discovery:8085/eureka
-    depends_on:
-      discovery:
-        condition: service_started
-      config:
-        condition: service_started
-      gateway:
-        condition: service_started
-    links:
-      - discovery
-      - config
-      - gateway
-    networks:
-      - local
-    container_name: order
-
-  chat:
-    image: delivery-webapp/chat
-    ports:
-      - "8087:8087"
-    environment:
-      - JAVA_OPTS=
+      SPRING_DATASOURCE_URL: jdbc:postgresql://order-db:5432/order-db?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+      JAVA_OPTS: >
         -DCONFIG_SERVER=http://config:8081
         -DEUREKA_SERVER=http://discovery:8085/eureka
     depends_on:
@@ -132,6 +170,52 @@ services:
         condition: service_started
       gateway:
         condition: service_started
+      order-db:
+        condition: service_healthy
+    links:
+      - discovery
+      - config
+      - gateway
+    networks:
+      - local
+    container_name: order
+
+  chat-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: chat-db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - chat-data:/var/lib/postgresql/data
+    networks:
+      - local
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "admin" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  chat:
+    image: delivery-webapp/chat
+    ports:
+      - "8087:8087"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://chat-db:5432/chat-db
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+      JAVA_OPTS: >
+        -DCONFIG_SERVER=http://config:8081
+        -DEUREKA_SERVER=http://discovery:8085/eureka
+    depends_on:
+      discovery:
+        condition: service_started
+      config:
+        condition: service_started
+      gateway:
+        condition: service_started
+      chat-db:
+        condition: service_healthy
     links:
       - discovery
       - config
@@ -146,6 +230,11 @@ services:
       - "4200:80"
     container_name: frontend
 
+volumes:
+  user-data:
+  order-data:
+  map-data:
+  chat-data:
 
 networks:
   local:
