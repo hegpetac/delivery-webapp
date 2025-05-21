@@ -1,7 +1,6 @@
 package com.backend.order.controller;
 
-import com.backend.orderapi.api.OrderApi;
-import com.backend.orderapi.model.*;
+import com.backend.orderapi.*;
 import com.backend.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

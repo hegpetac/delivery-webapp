@@ -7,10 +7,10 @@ import com.backend.order.mapper.OrderMapper;
 import com.backend.order.repository.GoodRepository;
 import com.backend.order.repository.OrderItemRepository;
 import com.backend.order.repository.OrderRepository;
-import com.backend.orderapi.model.Good;
-import com.backend.orderapi.model.ModifyDeliveryDateReq;
-import com.backend.orderapi.model.ModifyDeliveryStateReq;
-import com.backend.orderapi.model.OrderItem;
+import com.backend.orderapi.Good;
+import com.backend.orderapi.ModifyDeliveryDateReq;
+import com.backend.orderapi.ModifyDeliveryStateReq;
+import com.backend.orderapi.OrderItem;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -43,13 +43,13 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public List<com.backend.orderapi.model.Order> getOrdersByUserId(Integer id) {
+    public List<com.backend.orderapi.Order> getOrdersByUserId(Integer id) {
         List<Order> orders = orderRepository.getOrdersByUserId(Long.valueOf(id));
         orders.forEach(this::calculatePriceOfOrder);
         return orderMapper.mapOrderListToModel(orders);
     }
 
-    public com.backend.orderapi.model.Order getOrderById(Integer id) {
+    public com.backend.orderapi.Order getOrderById(Integer id) {
         Order order = orderRepository.getReferenceById(Long.valueOf(id));
         calculatePriceOfOrder(order);
         return orderMapper.mapOrderToModel(order);

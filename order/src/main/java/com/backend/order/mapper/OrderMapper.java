@@ -10,23 +10,23 @@ import java.util.List;
 
 @Mapper
 public interface OrderMapper {
-    public Order mapOrderToEntity(com.backend.orderapi.model.Order order);
-    public com.backend.orderapi.model.Order mapOrderToModel(Order order);
+    public Order mapOrderToEntity(com.backend.orderapi.Order order);
+    public com.backend.orderapi.Order mapOrderToModel(Order order);
 
-    public List<Order> mapOrderListToEntity(List<com.backend.orderapi.model.Order> orders);
-    public List<com.backend.orderapi.model.Order> mapOrderListToModel(List<Order> orders);
+    public List<Order> mapOrderListToEntity(List<com.backend.orderapi.Order> orders);
+    public List<com.backend.orderapi.Order> mapOrderListToModel(List<Order> orders);
 
-    public OrderItem mapOrderItemToEntity(com.backend.orderapi.model.OrderItem orderItem);
-    public com.backend.orderapi.model.OrderItem mapOrderItemToModel(OrderItem orderItem);
+    public OrderItem mapOrderItemToEntity(com.backend.orderapi.OrderItem orderItem);
+    public com.backend.orderapi.OrderItem mapOrderItemToModel(OrderItem orderItem);
 
-    public List<OrderItem> mapOrderItemListToEntity(List<com.backend.orderapi.model.OrderItem> orderItem);
-    public List<com.backend.orderapi.model.OrderItem> mapOrderItemListToModel(List<OrderItem> orderItem);
+    public List<OrderItem> mapOrderItemListToEntity(List<com.backend.orderapi.OrderItem> orderItem);
+    public List<com.backend.orderapi.OrderItem> mapOrderItemListToModel(List<OrderItem> orderItem);
 
-    public Good mapGoodToEntity(com.backend.orderapi.model.Good good);
-    public com.backend.orderapi.model.Good mapGoodToModel(Good good);
+    public Good mapGoodToEntity(com.backend.orderapi.Good good);
+    public com.backend.orderapi.Good mapGoodToModel(Good good);
 
-    public List<Good> mapGoodListToEntity(List<com.backend.orderapi.model.Good> good);
-    public List<com.backend.orderapi.model.Good> mapGoodListToModel(List<Good> good);
+    public List<Good> mapGoodListToEntity(List<com.backend.orderapi.Good> good);
+    public List<com.backend.orderapi.Good> mapGoodListToModel(List<Good> good);
 
-    public DeliveryState mapDeliveryStateToEntity(com.backend.orderapi.model.DeliveryState state);
+    public DeliveryState mapDeliveryStateToEntity(com.backend.orderapi.DeliveryState state);
 }
