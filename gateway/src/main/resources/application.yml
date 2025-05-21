@@ -36,4 +36,3 @@ spring:
           - RewritePath=/api/user(?<segment>/?.*), /api$\{segment}
 deliveryWebapp:
   jwtSecret: HwTaEBBb6AFEyteEasdBnXjaerVWdeTRnNOkLM4N
-  jwtExpirationMs: 8640000

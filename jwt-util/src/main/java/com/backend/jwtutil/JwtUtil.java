@@ -1,6 +1,5 @@
-package com.backend.user.util;
+package com.backend.jwtutil;
 
-import com.backend.user.entity.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -23,14 +22,14 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
 
-    public String generateToken(String username, Role role) {
+    public String generateToken(String username, String role) {
         Instant now = Instant.now();
 
         return Jwts.builder()
                 .subject(username)
                 .issuedAt(Date.from(now))
                 .expiration(Date.from(now.plus(30, ChronoUnit.MINUTES)))
-                .claim("role", role.getName())
+                .claim("role", role)
                 .signWith(getKey())
                 .compact();
     }

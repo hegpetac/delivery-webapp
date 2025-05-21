@@ -1,6 +1,5 @@
 package com.backend.user.controller;
 
-import com.backend.user.exception.UserException;
 import com.backend.user.service.AuthService;
 import com.backend.userapi.UserApi;
 import com.backend.userapi.*;
