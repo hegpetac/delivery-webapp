@@ -6,7 +6,7 @@ info:
 servers:
   - url: 'http://localhost:8082'
 paths:
-  /api/login:
+  /api/auth/login:
     post:
       tags:
         - User
@@ -16,17 +16,42 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './req/login-req.yaml'
+              $ref: './req/auth-req.yaml'
       responses:
         '200':
           description: 'Success'
           content:
             application/json:
               schema:
-                $ref: './resp/login-resp.yaml'
+                $ref: './resp/auth-resp.yaml'
         '401':
           description: 'Unauthorized'
           content:
             application/json:
               schema:
                 $ref: './error/unauthorized.yaml'
+
+  /api/auth/register:
+    post:
+      tags:
+        - User
+      operationId: register
+      description: 'Register new user'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './req/register-req.yaml'
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                $ref: './resp/auth-resp.yaml'
+        '409':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: './error/unsuccessful-registration.yaml'

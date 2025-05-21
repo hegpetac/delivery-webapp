@@ -6,6 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.4</version>
+		<relativePath/>
 	</parent>
 	<groupId>com.backend</groupId>
 	<artifactId>user</artifactId>
@@ -15,7 +16,6 @@
 	<properties>
 		<java.version>21</java.version>
 		<spring-cloud.version>2023.0.1</spring-cloud.version>
-		<package.infrastructure>com.backend.userapi</package.infrastructure>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -100,7 +100,6 @@
 			<groupId>com.backend</groupId>
 			<artifactId>user-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
 		</dependency>
 
 		<dependency>

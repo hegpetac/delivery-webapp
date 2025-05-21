@@ -6,6 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.4</version>
+		<relativePath/>
 	</parent>
 	<groupId>com.backend</groupId>
 	<artifactId>user-api</artifactId>
@@ -83,14 +84,15 @@
 						<configuration>
 							<generatorName>spring</generatorName>
 							<inputSpec>${project.basedir}/src/openapi/user.yml</inputSpec>
-							<output>${project.basedir}/target</output>
-							<apiPackage>${package.infrastructure}.api</apiPackage>
-							<modelPackage>${package.infrastructure}.model</modelPackage>
+							<output>${project.basedir}/target/generated-sources</output>
+							<apiPackage>${package.infrastructure}</apiPackage>
+							<modelPackage>${package.infrastructure}</modelPackage>
 							<configOptions>
 								<library>spring-cloud</library>
 								<useTags>true</useTags>
 								<useSpringController>true</useSpringController>
 								<useSpringBoot3>true</useSpringBoot3>
+								<generateConstructorWithAllArgs>true</generateConstructorWithAllArgs>
 							</configOptions>
 						</configuration>
 					</execution>
