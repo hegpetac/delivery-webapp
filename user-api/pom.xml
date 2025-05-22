@@ -65,17 +65,17 @@
 				<artifactId>openapi-generator-maven-plugin</artifactId>
 				<version>7.10.0</version>
 				<executions>
-					<!--                    <execution>-->
-					<!--                        <id>generate-user-api-ts-model</id>-->
-					<!--                        <goals>-->
-					<!--                            <goal>generate</goal>-->
-					<!--                        </goals>-->
-					<!--                        <configuration>-->
-					<!--                            <inputSpec>${project.basedir}/src/openapi/user.yml</inputSpec>-->
-					<!--                            <generatorName>typescript-angular</generatorName>-->
-					<!--                            <output>${project.basedir}/../delivery-webapp-client/src/openapi/user</output>-->
-					<!--                        </configuration>-->
-					<!--                    </execution>-->
+					                    <execution>
+					                        <id>generate-user-api-ts-model</id>
+					                        <goals>
+					                            <goal>generate</goal>
+					                        </goals>
+					                        <configuration>
+					                            <inputSpec>${project.basedir}/src/openapi/user.yml</inputSpec>
+					                            <generatorName>typescript-angular</generatorName>
+					                            <output>${project.basedir}/../delivery-webapp-client/src/openapi/user</output>
+					                        </configuration>
+					                    </execution>
 					<execution>
 						<id>generate-user-api-java-model</id>
 						<goals>

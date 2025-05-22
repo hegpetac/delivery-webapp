@@ -1,5 +1,9 @@
 #! /bin/sh
 
+cd jwt-util
+mvn clean install -DskipTests
+cd ..
+
 cd user-api
 mvn clean install -DskipTests
 cd ..

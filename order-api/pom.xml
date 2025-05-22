@@ -63,17 +63,17 @@
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>7.10.0</version>
                 <executions>
-<!--                    <execution>-->
-<!--                        <id>generate-order-api-ts-model</id>-->
-<!--                        <goals>-->
-<!--                            <goal>generate</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <inputSpec>${project.basedir}/src/openapi/order.yml</inputSpec>-->
-<!--                            <generatorName>typescript-angular</generatorName>-->
-<!--                            <output>${project.basedir}/../delivery-webapp-client/src/openapi/order</output>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
+                    <execution>
+                        <id>generate-order-api-ts-model</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/openapi/order.yml</inputSpec>
+                            <generatorName>typescript-angular</generatorName>
+                            <output>${project.basedir}/../delivery-webapp-client/src/openapi/order</output>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>generate-order-api-java-model</id>
                         <goals>
