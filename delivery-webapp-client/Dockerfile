@@ -4,7 +4,7 @@ FROM node:alpine as build
 # Set working directory
 WORKDIR /app
 
-RUN npm install -g @angular/cli@14
+RUN npm install -g @angular/cli@19
 
 # Copy package.json and package-lock.json
 COPY package.json /app/package.json
